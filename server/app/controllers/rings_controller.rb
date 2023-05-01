@@ -1,8 +1,12 @@
 class RingsController < ApplicationController
-  def index
-    puts "hit"
-    data = {name: "oneRing", owner: "sauron"}
-
-    render json: data.to_json.encode("UTF-8"), content_type: 'application/json'
+  def create
+    # Your code here
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3001'
+    
+    ring_params = params.require(:ring).permit(:name, :owner)
+    # Do your processing here
+    
+    render json: { message: 'OK' }, status: :ok
   end
 end
+

@@ -8,4 +8,4 @@ default: &default
 
 development:
   <<: *default
-  database: rings_db
+  database: pokeBlog

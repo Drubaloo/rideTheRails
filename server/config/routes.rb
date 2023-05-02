@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   get '/api/csrf_token', to: 'application#get_csrf_token'
   
   resources :rings
+  resources :users
+  resources :pokemon
+  resources :posts
+  resources :coments
 end

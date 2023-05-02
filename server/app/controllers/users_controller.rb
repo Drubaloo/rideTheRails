@@ -1,14 +1,20 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
+  def index
+    @users = User.all
+    render json: @users.to_json.force_encoding('UTF-8')
+  end
+
   def new
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
+  
     if @user.save
       redirect_to root_path, notice: 'User was successfully created.'
     else
-      render :new
+      render json: "failed to create"
     end
   end
 

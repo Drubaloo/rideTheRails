@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    render json: @users.to_json.force_encoding('UTF-8')
+    render json: @users.to_json
   end
 
   def new
@@ -10,11 +10,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-  
+
     if @user.save
       redirect_to root_path, notice: 'User was successfully created.'
     else
-      render json: "failed to create"
+      render json: { errors: @user.errors.full_messages }
     end
   end
 
@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
     if @user.update(user_params)
       redirect_to root_path, notice: 'User was successfully updated.'
     else
@@ -34,6 +35,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.permit(:name, :email, :password, :password_confirmation)
   end
 end

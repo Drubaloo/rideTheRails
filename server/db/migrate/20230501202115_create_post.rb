@@ -4,6 +4,7 @@ class CreatePost < ActiveRecord::Migration[7.0]
       t.binary :id, limit: 16, primary_key: true
       t.string :title
       t.string :body
+      t.references :pokemons, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true, type: 'binary(16)'
 
       t.timestamps

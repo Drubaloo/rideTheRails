@@ -1,47 +1,50 @@
+require 'net/http'
+require 'json'
+
 class PokemonController < ApplicationController
   def index
-    @posts = Post.all
+    @pokemon = Pokemon.all
   end
 
   def show
-    @post = Post.find(params[:id])
+    @pokemon = Pokemon.find(params[:id])
   end
 
   def new
-    @post = Post.new
+    @pokemon = Pokemon.new
   end
 
   def create
-    @post = current_user.posts.new(post_params)
-    if @post.save
-      redirect_to @post
+    @pokemon = current_user.pokemon.new(post_params)
+    if @pokemon.save
+      redirect_to @pokemon
     else
       render 'new'
     end
   end
 
   def edit
-    @post = current_user.posts.find(params[:id])
+    @pokemon = current_user.pokemon.find(params[:id])
   end
 
   def update
-    @post = current_user.posts.find(params[:id])
-    if @post.update(post_params)
-      redirect_to @post
+    @pokemon = current_user.pokemon.find(params[:id])
+    if @pokemon.update(post_params)
+      redirect_to @pokemon
     else
       render 'edit'
     end
   end
 
   def destroy
-    @post = current_user.posts.find(params[:id])
-    @post.destroy
+    @pokemon = current_user.pokemon.find(params[:id])
+    @pokemon.destroy
     redirect_to root_path
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:pokemon).permit(:title, :body)
   end
 end

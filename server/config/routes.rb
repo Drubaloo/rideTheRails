@@ -3,11 +3,17 @@ Rails.application.routes.draw do
   get 'post/index'
   get 'pokemon/index'
   get 'user/index'
+  
+  # Defines the root path route ("/")
+  get '/api/csrf_token', to: 'application#get_csrf_token'
+  
+
+  post 'login', to: 'sessions#create', as: :login
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
+  delete "/logout", to: "sessions#destroy", as: "logout"
+  
   root "rings#index"
-  get '/api/csrf_token', to: 'application#get_csrf_token'
   
   resources :rings
   resources :users

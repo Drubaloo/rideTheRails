@@ -11,8 +11,9 @@ class User < ApplicationRecord
 
   # password handling
   attr_accessor :password
+
   before_save :encrypt_password
-  
+
   def encrypt_password
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt

@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'json'
+
+Pokemon.destroy_all
+pokemon_data = JSON.parse(File.read(Rails.root.join('db', 'pokemon.json')))
+
+pokemon_data.each do |data|
+  Pokemon.create(id: data['id'], name: data['name'])
+end

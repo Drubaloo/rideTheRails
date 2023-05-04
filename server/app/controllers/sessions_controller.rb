@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
       if user
         # encode user ID to stop session freaking out JSON::GeneratorError (source sequence is illegal/malformed utf-8):
         # decode Base64.decode64(session[:user_id]).to_i
-        session[:user_id] = Base64.encode64(user.id.to_s)
+        session[:user_id] = user.id.to_s
         render plain: "success"
       else
         render plain: "fail"

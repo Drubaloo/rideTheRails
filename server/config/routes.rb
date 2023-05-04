@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   resources :users
   resources :pokemon
   resources :posts
-  resources :coments
+  resources :comments
 end

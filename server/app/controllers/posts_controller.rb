@@ -9,8 +9,8 @@ class PostsController < ApplicationController
   end
   
   def show
-    @post = Post.find(params[:id])
-    render json: @post.as_json
+    @post = Post.includes(:comments).find(params[:id])
+    render json: @post.as_json(include: :comments)
   end
 
   def new
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   def create
     puts session.to_hash
-    @post = User.find_by(id: Base64.decode64(session[:user_id])).posts.new(post_params)
+    @post = User.find_by(id: session[:user_id]).posts.new(post_params)
     if @post.save
       render plain: "created"
     else

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'post/index'
   get 'pokemon/index'
   get 'user/index'
-  
+  get 'posts/:category/:id', to: 'posts#pokemon'
   # Defines the root path route ("/")
   get '/api/csrf_token', to: 'application#get_csrf_token'
   

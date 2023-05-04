@@ -202,6 +202,7 @@ GEM
       tzinfo (>= 1.0.0)
     uuid (2.3.9)
       macaddr (~> 1.0)
+    uuidtools (2.2.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -240,6 +241,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   uuid
+  uuidtools
   web-console
   webdrivers
 

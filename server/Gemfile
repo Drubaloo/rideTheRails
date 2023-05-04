@@ -83,3 +83,5 @@ gem 'uuid', groups: [:development, :test, :production]
 gem 'rack-cors'
 
 gem 'bcrypt'
+
+gem 'uuidtools'

@@ -1,7 +1,6 @@
 class CreateUsers < ActiveRecord::Migration[7.0]
   def change
-    create_table :users, id: false do |t|
-      t.binary :id, limit: 16, primary_key: true
+    create_table :users do |t|
       t.string :name
       t.string :email
       t.string :password_hash
@@ -10,6 +9,5 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    execute "ALTER TABLE users MODIFY COLUMN id BINARY(16) DEFAULT (UUID_TO_BIN(UUID(), TRUE))"
   end
 end
